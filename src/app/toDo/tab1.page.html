@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Moje zadania</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let task of tasks | async">
+      <ion-item>
+        <ion-label button [routerLink]="['/details', task.id]">
+          {{ task.name }}
+        </ion-label>
+      </ion-item>
+      <ion-item-options>
+        <ion-item-option color="success" clear (click)="done(task)">
+          <ion-icon slot="start" name="checkmark"></ion-icon>
+          Wykonane
+        </ion-item-option>
+        <ion-item-option color="danger" clear (click)="remove(task)">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Usuń
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab (click)="addTask()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="md-add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-icon (click)="logOut()" name="md-log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

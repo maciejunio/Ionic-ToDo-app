@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Zadania wykonane</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (swipe)="swipeEvent($event, task)" *ngFor="let task of tasksDone | async">
+      <ion-label> {{ task.name }} </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

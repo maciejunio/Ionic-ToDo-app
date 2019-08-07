@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Dodawanie zadania</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="addTask(form)">
+    <ion-item>  
+      <ion-label>Zadanie</ion-label>    
+      <ion-input type="text" ngModel name="name"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Priorytet</ion-label> 
+        <ion-select placeholder="Wybierz..." ngModel name="priority">
+            <ion-select-option value="Niski">Niski</ion-select-option>
+            <ion-select-option value="Średni">Średni</ion-select-option>
+            <ion-select-option value="Wysoki">Wysoki</ion-select-option>
+        </ion-select>
+    </ion-item>
+    
+    <ion-button type="submit" expand="block">Dodaj</ion-button>
+  </form>
+</ion-content>
