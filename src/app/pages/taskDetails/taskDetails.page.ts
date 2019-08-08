@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../service/task.service';
-import { Task } from '../models/task';
+import { TaskService } from '../../service/task.service';
+import { Task } from '../../models/task';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-todo-details',
-  templateUrl: './todo-details.page.html',
-  styleUrls: ['./todo-details.page.scss'],
+  templateUrl: './taskDetails.page.html',
+  styleUrls: ['./taskDetails.page.scss'],
 })
-export class TodoDetailsPage implements OnInit {
+export class TaskDetailsPage implements OnInit {
 
   id: string;
   task: Task;

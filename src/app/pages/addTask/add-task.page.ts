@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../models/task';
 import { NgForm } from '@angular/forms';
-import { TaskService } from '../service/task.service';
 import { Router } from '@angular/router';
+
+import { Task } from '../../models/task';
+
+import { TaskService } from '../../service/task.service';
 
 @Component({
   selector: 'app-add-task',
@@ -19,7 +21,12 @@ export class AddTaskPage implements OnInit {
   }
 
   addTask(formData: NgForm) {
-    const task: Task = ({ name: formData.value.name, created: new Date().toLocaleDateString(), isDone: false, priority: formData.value.priority });
+    const task: Task = ({
+      name: formData.value.name,
+      created: new Date().toLocaleDateString(),
+      isDone: false,
+      priority: formData.value.priority
+    });
     this.taskService.add(task);
     this.router.navigateByUrl('/tabs');
   }

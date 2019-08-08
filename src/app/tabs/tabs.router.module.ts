@@ -13,7 +13,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../toDo/tab1.module').then(m => m.Tab1PageModule)
+              import('./toDoTask/toDoTask.module').then(m => m.ToDoTaskPageModule)
           }
         ]
       },
@@ -23,7 +23,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../done/tab2.module').then(m => m.Tab2PageModule)
+              import('./taskDone/taskDone.module').then(m => m.TaskDonePageModule)
           }
         ]
       },

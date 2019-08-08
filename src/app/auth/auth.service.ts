@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { User, auth } from 'firebase';
 import { Router } from '@angular/router';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { AlertController } from '@ionic/angular';
+import { User, auth } from 'firebase';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
   constructor(private angularFire: AngularFireAuth, private router: Router, public alertController: AlertController) {
   }
 
-  async loginErr(errMsg) {
+  async showErr(errMsg) {
     const alert = await this.alertController.create({
       header: 'Error',
       message: errMsg,
@@ -30,23 +31,12 @@ export class AuthService {
 
   // Logowanie
   login(email: string, password: string) {
-    return this.angularFire.auth.signInWithEmailAndPassword(email, password).then(user => {
-      this.router.navigateByUrl('/tabs');
-    }).catch(err => {
-      this.errMsg = err.message;
-      this.loginErr(this.errMsg);
-    }
-    );
+    return this.angularFire.auth.signInWithEmailAndPassword(email, password);
   }
 
   // Rejestracja
   register(email: string, password: string) {
-    return this.angularFire.auth.createUserWithEmailAndPassword(email, password).then(respone => {
-      this.router.navigateByUrl('/tabs');
-    }).catch(err => {
-      this.errMsg = err.message;
-      this.loginErr(this.errMsg);
-    });
+    return this.angularFire.auth.createUserWithEmailAndPassword(email, password);
   }
   // Logowanie z google
   async  loginWithGoogle() {
@@ -56,7 +46,7 @@ export class AuthService {
 
   // Wylogowanie
   logOut() {
+    this.angularFire.auth.signOut();
     this.router.navigate(['/login']);
-    return this.angularFire.auth.signOut();
   }
 }

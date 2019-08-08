@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item (swipe)="swipeEvent($event, task)" *ngFor="let task of tasksDone | async">
+    <ion-item *ngFor="let task of tasksDone | async">
       <ion-label> {{ task.name }} </ion-label>
     </ion-item>
   </ion-list>

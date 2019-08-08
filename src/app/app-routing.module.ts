@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+
 import { GuardService } from './auth/guard.service';
 
 const routes: Routes = [
@@ -16,9 +17,21 @@ const routes: Routes = [
     path: 'register',
     loadChildren: './auth/register/register.module#RegisterPageModule'
   },
-  { path: 'details/:id', loadChildren: './todo-details/todo-details.module#TodoDetailsPageModule' },
-  { path: 'details', loadChildren: './todo-details/todo-details.module#TodoDetailsPageModule' },
-  { path: 'add-task', loadChildren: './add-task/add-task.module#AddTaskPageModule' },
+  {
+    path: 'details/:id',
+    loadChildren: './pages/taskDetails/taskDetails.module#TaskDetailsPageModule',
+    canActivate: [GuardService]
+  },
+  {
+    path: 'details',
+    loadChildren: './pages/taskDetails/taskDetails.module#TaskDetailsPageModule',
+    canActivate: [GuardService]
+  },
+  {
+    path: 'add-task',
+    loadChildren: './pages/addTask/add-task.module#AddTaskPageModule',
+    canActivate: [GuardService]
+  },
 ];
 @NgModule({
   imports: [
